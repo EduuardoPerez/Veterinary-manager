@@ -12,13 +12,6 @@ const Cita = ({cita, eliminarCita}) => (
 
       <button
         className="btn btn-danger"
-        /*
-          Si se hace de esta manera onClick={eliminarCita(cita.id)}
-          la funcion se ejecutara sin que suceda el evento. Esto se debe
-          a la sintaxis de los parentesis que son la llamada a una
-          funcion en JavaScript. Para poder pasar el parametro que necesita
-          se hará con la arrow function como sigue:
-        */
         onClick={() => eliminarCita(cita.id)}
       >Borrar &times;</button>
     </div>
