@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import uuid from 'uuid';
 
 class NuevaCita extends Component {
   state = {
@@ -40,8 +41,17 @@ handleSubmit = e => {
     return;
   }
 
-  
+  // Generar objeto con los datos
+  const nuevaCita = {...this.state.cita};
+  nuevaCita.id = uuid();
+
   // Agregar la cita al state de App
+  /*
+    Esta es una forma en la que se puede hacer que los datos de un
+    componente hijo pasen al padre creando una funcion que tome datos,
+    parametros en realidad, que en este caso se llaman datos
+   */
+  this.props.crearNuevaCita(nuevaCita)
 }
 
   render(){
