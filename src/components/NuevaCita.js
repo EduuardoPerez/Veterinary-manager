@@ -26,7 +26,6 @@ class NuevaCita extends Component {
 
 // Cuando el usuario envia el formulario
 handleSubmit = e => {
-  // Se coloca para poder escribir el cod que se ejecutará cuando se envíe el form
   e.preventDefault();
 
   // Extraer los valores del state con destructuring
@@ -46,21 +45,32 @@ handleSubmit = e => {
   nuevaCita.id = uuid();
 
   // Agregar la cita al state de App
-  /*
-    Esta es una forma en la que se puede hacer que los datos de un
-    componente hijo pasen al padre creando una funcion que tome datos,
-    parametros en realidad, que en este caso se llaman datos
-   */
   this.props.crearNuevaCita(nuevaCita)
 }
 
   render(){
+
+    // extraer valor del state
+    const {error} = this.state;
+
     return(
       <div className="card mt-5 py-5">
         <div className="card-body">
           <h2 className="card-title text center mb-5">
             Llena el formulario para crear una nueva cita
           </h2>
+
+          {/* 
+            Si el error existe imprime Todos los campos son obligatorios
+            sino no imprime nada 
+          */}
+          { 
+            error ? 
+              <div className="alert alert-danger mt-2 mb-5 text-center">
+                Todos los campos son obligatorios
+              </div>: null 
+          }
+
           <form
             onSubmit={this.handleSubmit}
           >

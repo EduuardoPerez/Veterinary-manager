@@ -14,7 +14,6 @@ class App extends Component {
 
     // Agregar el nuevo state
     this.setState({
-      // ususalmente se utilzia citas: citas pero como se llaman igual pasándole uno basta
       citas
     })
   }
