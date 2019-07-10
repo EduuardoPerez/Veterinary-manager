@@ -8,34 +8,41 @@ class NuevaCita extends Component {
       fecha: '',
       hora: '',
       sintomas: ''
-    }
+    },
+    error: false
   }
 
+  // Cuando el usuario escribe en los inputs
   handleChange = e => {
-    /*
-      Para que este metodo funcione en otros forms el name de cada
-      elemento del form debe coincidir con los atributos del state
-    */
-    // ver en cosole desde cuál input se está llamando al método
-    console.log(e.target.name+': '+e.target.value)
-
     // colocar lo que el usuario escribe en el state
     this.setState({
       cita:{
-        /* 
-          Esta sintaxis permitira que sea mas dinamica la forma en
-          como se actualiza el state. e.target toma segun el name de
-          la etiqueta.
-          
-          Se recomienda tomar una copia del state antes de comenzar a
-          modificarlo para que no se pierdan esos datos, esto con el 
-          spread operator (...)
-        */
-       ...this.state.cita, // De esta forma los datos previos del state no se borran
+       ...this.state.cita,
         [e.target.name]: e.target.value
       }
     })
   }
+
+// Cuando el usuario envia el formulario
+handleSubmit = e => {
+  // Se coloca para poder escribir el cod que se ejecutará cuando se envíe el form
+  e.preventDefault();
+
+  // Extraer los valores del state con destructuring
+  const {mascota, propietario, fecha, hora, sintomas} = this.state.cita;
+
+  // Validar que todos los campos esten llenos
+  if(mascota==='' || propietario==='' || fecha==='' || hora==='' || sintomas===''){
+    this.setState({
+      error: true
+    });
+    // detener la ejecución
+    return;
+  }
+
+  
+  // Agregar la cita al state de App
+}
 
   render(){
     return(
@@ -44,7 +51,9 @@ class NuevaCita extends Component {
           <h2 className="card-title text center mb-5">
             Llena el formulario para crear una nueva cita
           </h2>
-          <form>
+          <form
+            onSubmit={this.handleSubmit}
+          >
             <div className="form-group row">
               <label className="col-sm-4 col-lg-2 col-form-label">
                 Nombre Mascota
