@@ -162,7 +162,7 @@ handleSubmit = e => {
 }
 
 NuevaCita.protoTypes = {
-  crearNuevaCita = PropTypes.func.isRequired
+  crearNuevaCita: PropTypes.func.isRequired
 }
 
 export default NuevaCita;
