@@ -19,8 +19,7 @@ class App extends Component {
     }
   }
 
-  // Cuando eliminamos o eliminamos una nueva cita
-  // local storage no soporta arreglos, pero si strings
+  // Cuando eliminamos o agregamos una nueva cita
   componentDidUpdate(){
     localStorage.setItem('citas', JSON.stringify(this.state.citas));
   }
